@@ -21,7 +21,7 @@
                         <td>{{persona.apellidos}}</td>
                         <td>{{persona.saldo}}</td>
                         <td>
-                            <button [routerLink]="['/edit',persona.id]" class="btn btn-success" style="margin-left: 10px;">Consignar</button>
+                            <button [routerLink]="['/consignar',persona.id,persona.saldo]" class="btn btn-success" style="margin-left: 10px;">Consignar</button>
                             <button [routerLink]="['/retirar',persona.id,persona.saldo]" class="btn btn-warning" style="margin-left: 10px;">Retirar</button>
                             <button (click)="delete(persona.id)" class="btn btn-danger" style="margin-left: 10px;">Eliminar</button>
                         </td>

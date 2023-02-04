@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../../Service/service.service';
 import { Persona } from 'src/app/Modelo/Persona';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-listar',
@@ -12,7 +13,8 @@ export class ListarComponent implements OnInit {
 
   
 constructor( 
-  private servicePerson : ServiceService
+  private servicePerson : ServiceService,
+  private toastr:ToastrService
   )
   {}
   
@@ -40,7 +42,7 @@ delete(id : any){
     data =>{
       this.personas = data;
     console.log('Usuario eliminado')
-      //this.router.navigate(['listar'])
+    this.toastr.warning("Se ha eliminado el usuario correctamente","Usuario eliminado")
       this.getPersons();
     },error=>{
       console.log(error);

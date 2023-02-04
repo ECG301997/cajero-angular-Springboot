@@ -7,11 +7,11 @@ import { saldoFin } from 'src/app/Modelo/Persona';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-consignar',
-  templateUrl: './consignar.component.html',
-  styleUrls: ['./consignar.component.css']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css']
 })
-export class ConsignarComponent {
+export class EditComponent {
   personaForm: FormGroup;
   lista!: ListarComponent;
   id: number | any
@@ -25,6 +25,7 @@ export class ConsignarComponent {
     private toastr:ToastrService
   ) {
     this.personaForm = this.fb.group({
+
       saldo: ['', Validators.required]
     })
     this.id = this.aRouter.snapshot.paramMap.get('id');
@@ -40,22 +41,30 @@ export class ConsignarComponent {
 
     return valorRetiro
   }
-  Consignar() {
-    let valorRetiro = this.capture()
-    this.saldoFinal = parseFloat(this.saldo) + parseFloat(valorRetiro)
-    console.log(this.saldoFinal)
-    const saldo: saldoFin = {
-      saldo: this.saldoFinal
-    }
 
-    this.servicePerson.update(this.id, saldo).subscribe(
-      data => {
-        this.toastr.success("Se ha consignado correctamente","Consignación realizada")
-        this.router.navigate(["/listar"])
-      }, error => {
-        this.toastr.success("No se ha podido consignar","Consignación rechazada")
+  Editar() {
+
+    let valorRetiro = this.capture()
+    console.log(valorRetiro)
+    if (valorRetiro > this.saldo) {
+      this.toastr.error("No posee los fondos necesarios","Saldo insuficiente")
+    } else {
+      this.saldoFinal = this.saldo - valorRetiro
+
+      const saldo: saldoFin = {
+        saldo: this.saldoFinal
       }
-    );
+
+      this.servicePerson.update(this.id, saldo).subscribe(
+        data => {
+          this.toastr.error(" se ha realizado retiro realizado de manera exitosa","Retiro realizado")
+          this.router.navigate(["/listar"])
+        }, error => {
+          console.log(error)
+        }
+      );
+    }
   }
+
 }
 

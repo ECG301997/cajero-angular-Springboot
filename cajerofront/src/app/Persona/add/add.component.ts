@@ -4,6 +4,7 @@ import { ServiceService }  from 'src/app/Service/service.service';
 import { Persona } from 'src/app/Modelo/Persona'
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { ListarComponent } from '../listar/listar.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add',
@@ -15,7 +16,11 @@ export class AddComponent implements OnInit {
   lista!: ListarComponent;
   
   
-  constructor(private fb: FormBuilder, private router:Router, private servicePerson:ServiceService){
+  constructor(private fb: FormBuilder,
+    private router:Router,
+    private servicePerson:ServiceService,
+    private toastr:ToastrService
+    ){
     this.personaForm = this.fb.group({
       id:['',Validators.required],
       nombres:['',Validators.required],
@@ -38,10 +43,10 @@ export class AddComponent implements OnInit {
     }
     this.servicePerson.add(personas).subscribe(
       data=>{
-        this.router.navigate(["/listar"]);
-
+        this.toastr.success("La persona se ha registrado exitosamente","Persona registrada")
+        this.router.navigate(["/listar"])
     },error=>{
-      alert(error)
+      this.toastr.error("La persona no se ha podido registrar","Error al añadir persona")
     })
   }
 
