@@ -18,6 +18,7 @@ nav{
     background: #6e708e;
     height: 50px;
     width: 100%;
+    position: fixed;
 }
 
 .logo{
