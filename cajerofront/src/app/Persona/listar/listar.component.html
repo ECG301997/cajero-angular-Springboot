@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h3>Usuarios</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRES</th>
+                        <th>APELLIDOS</th>
+                        <th>SALDO</th>
+                        <th>MOVIMIENTOS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let persona of personas" class="text-center">
+                        <td>{{persona.id}}</td>
+                        <td>{{persona.nombres}}</td>
+                        <td>{{persona.apellidos}}</td>
+                        <td>{{persona.saldo}}</td>
+                        <td>
+                            <button [routerLink]="['/edit',persona.id]" class="btn btn-success" style="margin-left: 10px;">Consignar</button>
+                            <button [routerLink]="['/retirar',persona.id,persona.saldo]" class="btn btn-warning" style="margin-left: 10px;">Retirar</button>
+                            <button (click)="delete(persona.id)" class="btn btn-danger" style="margin-left: 10px;">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

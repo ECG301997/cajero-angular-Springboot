@@ -1,0 +1,43 @@
+<div class="container col-mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="titulo">CREAR PRODUCTO</span>
+                    <form class="mt-3" [formGroup]="personaForm" (ngSubmit)="Guardar()">
+                        <div class="mb-3">
+                            <label for="">Identificacion</label>
+                            <input formControlName="id" name="id" type="number" class="form-control form-control-lg">
+                            <div class="text-danger" *ngIf="personaForm.get('id')?.hasError('required') && personaForm.get('id')?.touched">
+                                <span><strong>La identificación es obligatoria</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Nombres</label>
+                            <input formControlName="nombres" name="nombres" type="text" class="form-control form-control-lg">
+                            <div class="text-danger" *ngIf="personaForm.get('nombres')?.hasError('required') && personaForm.get('nombres')?.touched">
+                                <span><strong>Los nombres son obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Apellidos</label>
+                            <input formControlName="apellidos" name="apellidos" type="text" class="form-control form-control-lg">
+                            <div class="text-danger" *ngIf="personaForm.get('apellidos')?.hasError('required') && personaForm.get('apellidos')?.touched">
+                                <span><strong>Los apellidos son obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Saldo</label>
+                            <input formControlName="saldo" name="saldo" type="number" class="form-control form-control-lg">
+                            <div class="text-danger" *ngIf="personaForm.get('saldo')?.hasError('required') && personaForm.get('saldo')?.touched">
+                                <span><strong>El saldo es obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <button type="submit" [disabled]="personaForm.invalid" class="btn btn-success btn-lg" style="margin:20px;">Guardar</button>
+                        <button class="btn btn-danger btn-lg" style="margin:20px;" routerLink="/">Volver</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
