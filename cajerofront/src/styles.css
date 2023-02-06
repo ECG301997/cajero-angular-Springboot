@@ -15,7 +15,7 @@ nav{
 }
 
 .navbar-menu{
-    background: #6e708e;
+    background: #000000;
     height: 50px;
     width: 100%;
     position: fixed;
@@ -75,7 +75,7 @@ section{
 .banner{
     height: 100vh;
     position: relative;
-    background: rgb(178, 184, 213) fixed no-repeat 50% 50%;
+    background: rgb(75, 89, 151) fixed no-repeat 50% 50%;
     background-size: 900px;}
 
 .banner-content img{
@@ -142,7 +142,7 @@ section{
     height: 100%;
     box-sizing: border-box;
     padding: 0 50px;
-    margin-top: 10%;
+    margin-top: 30px;
 }
 
 .about-imgx{
